@@ -199,7 +199,7 @@ Route::middleware('auth')->group(function () {
     Route::get('postulacion/declaracion-representante/{id}', 'PostulacionController@declaracionRepresentante')->name('postulacion.declaracion_representante')->middleware('permission:consultar_postulacion');
     Route::get('postulacion/declaracion-equipo/{id}', 'PostulacionController@declaracionEquipo')->name('postulacion.declaracion_equipo')->middleware('permission:consultar_postulacion');
     Route::get('postulacion/acta-modalidad-colectiva/{id}', 'PostulacionController@actaModalidadColectiva')->name('postulacion.acta_modalidad_colectiva')->middleware('permission:consultar_postulacion');
-    
+
     /**
      * RUTAS CATEGORIA
      */
@@ -466,6 +466,9 @@ Route::middleware('auth')->group(function () {
     Route::get('course', 'CourseController@index')->name('course')->middleware('permission:reporte_course');
     Route::get('course/exportar', 'CourseController@exportar')->name('course.exportar')->middleware('permission:reporte_course');
     Route::post('course/reporte', 'CourseController@reporte')->name('course.reporte')->middleware('permission:reporte_course');
+
+    Route::get('centro-academico', 'AulaVirtual\CentroAcademicoController@index')->name('centro-academico.index');
+    Route::get('centro-academico/lista', 'AulaVirtual\CentroAcademicoController@lista')->name('centro-academico.lista');
 });
 
 });
