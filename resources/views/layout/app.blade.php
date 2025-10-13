@@ -4,8 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Edutalentos - MINEDU</title>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    <!-- Tailwind CDN (para prototipo). En producción, compila tu build. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Config Tailwind (colores & fuente opcional)
@@ -98,7 +96,7 @@
             <p class="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Aula Virtual</p>
             <ul class="space-y-1 mb-6">
                 <li>
-                    <a hx-get="dashboard.php" hx-target="#content-html" hx-swap="innerHTML"
+                    <a href="#"
                        class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80 aria-[current=page]:bg-slate-800" aria-current="false">
                         <i data-lucide="layout-dashboard" class="h-5 w-5 text-slate-400 group-hover:text-slate-200"></i>
                         <span class="text-sm">Dashboard</span>
@@ -106,7 +104,7 @@
                 </li>
 
                 <li>
-                    <a hx-get="{{route('centro-academico.index')}}" hx-target="#content-html" hx-swap="innerHTML"
+                    <a href="{{route('aula-virtual.centro-academico.index')}}"
                        class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80 aria-[current=page]:bg-slate-800" aria-current="false">
                         <i data-lucide="graduation-cap" class="h-5 w-5 text-slate-400 group-hover:text-slate-200"></i>
                         <span class="text-sm">Centro Académico</span>
@@ -114,7 +112,7 @@
                 </li>
 
                 <li>
-                    <a hx-get="gestionusuarios.php" hx-target="#content-html" hx-swap="innerHTML"
+                    <a href="{{route('aula-virtual.gestion-usuario.index')}}"
                        class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80">
                         <i data-lucide="user-cog" class="h-5 w-5 text-slate-400 group-hover:text-slate-200"></i>
                         <span class="text-sm">Gestión de usuarios</span>
@@ -122,7 +120,7 @@
                 </li>
 
                 <li>
-                    <a hx-get="miscertificaciones.php" hx-target="#content-html" hx-swap="innerHTML"
+                    <a href="{{route('aula-virtual.certificado.index')}}"
                        class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80">
                         <i data-lucide="award" class="h-5 w-5 text-slate-400 group-hover:text-slate-200"></i>
                         <span class="text-sm">Mis certificados</span>
@@ -140,13 +138,13 @@
                     </button>
                     <ul id="grp-auditoria" class="mt-1 hidden pl-11 space-y-1" role="region">
                         <li>
-                            <a hx-get="auditoria-accesos.php" hx-target="#content-html" hx-swap="innerHTML"
+                            <a href="{{route('aula-virtual.auditoria.accesos-usuarios')}}"
                                class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm">
                                 <i data-lucide="log-in" class="h-4 w-4 text-slate-400"></i> Accesos de usuarios
                             </a>
                         </li>
                         <li>
-                            <a hx-get="auditoria-logs.php" hx-target="#content-html"
+                            <a href="{{route('aula-virtual.auditoria.log-sistema')}}"
                                class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm">
                                 <i data-lucide="scroll-text" class="h-4 w-4 text-slate-400"></i> Log de sistemas
                             </a>
@@ -155,7 +153,7 @@
                 </li>
 
                 <li>
-                    <a hx-get="calificaciones.php" hx-target="#content-html" hx-swap="innerHTML"
+                    <a href="{{route('aula-virtual.calificacion-tarea.index')}}"
                        class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80">
                         <i data-lucide="clipboard-check" class="h-5 w-5 text-slate-400 group-hover:text-slate-200"></i>
                         <span class="text-sm">Calificación de tareas</span>
@@ -167,13 +165,13 @@
             <p class="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Mensajería</p>
             <ul class="space-y-1 mb-6">
                 <li>
-                    <a hx-get="pages/mensajeria/programacion/index.php" hx-target="#content-html" hx-swap="innerHTML" class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80">
+                    <a href="{{route('mensajeria.programacion-envio.index')}}" class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80">
                         <i data-lucide="calendar-clock" class="h-5 w-5 text-slate-400 group-hover:text-slate-200"></i>
                         <span class="text-sm">Programación de envíos</span>
                     </a>
                 </li>
                 <li>
-                    <a hx-get="pages/mensajeria/plantillas.php" hx-target="#content-html" hx-swap="innerHTML" class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80">
+                    <a href="{{route('mensajeria.plantilla-mensaje.index')}}" class="group flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80">
                         <i data-lucide="file-text" class="h-5 w-5 text-slate-400 group-hover:text-slate-200"></i>
                         <span class="text-sm">Plantillas de mensajes</span>
                     </a>
@@ -189,9 +187,9 @@
                         <i data-lucide="chevron-down" class="h-4 w-4 text-slate-400 caret"></i>
                     </button>
                     <ul id="grp-canales" class="mt-1 hidden pl-11 space-y-1" role="region">
-                        <li><a hx-get="pages/mensajeria/canales/whatsapp.php" hx-target="#content-html" hx-swap="innerHTML" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="message-circle" class="h-4 w-4 text-slate-400"></i> WhatsApp</a></li>
-                        <li><a hx-get="pages/mensajeria/canales/correo.php" hx-target="#content-html" hx-swap="innerHTML" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="mail" class="h-4 w-4 text-slate-400"></i> Correo electrónico</a></li>
-                        <li><a hx-get="pages/mensajeria/canales/sms.php" hx-target="#content-html" hx-swap="innerHTML" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="message-square" class="h-4 w-4 text-slate-400"></i> SMS</a></li>
+                        <li><a href="{{route('mensajeria.configuracion-canal.whatsapp.index')}}" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="message-circle" class="h-4 w-4 text-slate-400"></i> WhatsApp</a></li>
+                        <li><a href="{{route('mensajeria.configuracion-canal.email.index')}}" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="mail" class="h-4 w-4 text-slate-400"></i> Correo electrónico</a></li>
+                        <li><a href="{{route('mensajeria.configuracion-canal.sms.index')}}" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="message-square" class="h-4 w-4 text-slate-400"></i> SMS</a></li>
                     </ul>
                 </li>
 
@@ -205,14 +203,14 @@
                         <i data-lucide="chevron-down" class="h-4 w-4 text-slate-400 caret"></i>
                     </button>
                     <ul id="grp-reportes" class="mt-1 hidden pl-11 space-y-1" role="region">
-                        <li><a hx-get="pages/mensajeria/reportes/canal.php" hx-target="#content-html" hx-swap="innerHTML" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="pie-chart" class="h-4 w-4 text-slate-400"></i> Estadísticas</a></li>
-                        <li><a hx-get="pages/mensajeria/reportes/pendientes.php" hx-target="#content-html" hx-swap="innerHTML" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="hourglass" class="h-4 w-4 text-slate-400"></i> Envíos realizados</a></li>
+                        <li><a href="{{route('mensajeria.reporte.estadistica')}}" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="pie-chart" class="h-4 w-4 text-slate-400"></i> Estadísticas</a></li>
+                        <li><a href="{{route('mensajeria.reporte.envios-realizado')}}" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-slate-800/80 text-sm"><i data-lucide="hourglass" class="h-4 w-4 text-slate-400"></i> Envíos realizados</a></li>
                     </ul>
                 </li>
             </ul>
 
             <!-- Grupo: SIDIFICA -->
-            <p class="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Sidifica</p>
+            <p class="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Sidifoca</p>
             <ul class="space-y-1">
                 <li>
                     <button class="w-full flex items-center justify-between gap-3 px-3 py-2 rounded-md hover:bg-slate-800/80"
@@ -347,7 +345,7 @@
                 <div class="relative" id="user-menu">
                     <button class="flex items-center gap-2 rounded-full pl-1 pr-3 py-1 hover:bg-slate-100" data-menu="button" aria-expanded="false" aria-haspopup="menu">
                         <img class="h-8 w-8 rounded-full ring-2 ring-white" src="https://i.pravatar.cc/80?img=5" alt="Avatar usuario" />
-                        <span class="hidden sm:block text-sm font-medium text-slate-700">Alex</span>
+                        <span class="hidden sm:block text-sm font-medium text-slate-700">{{Auth::user()->nombres}}</span>
                         <svg class="h-4 w-4 text-slate-500" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08z"/></svg>
                     </button>
                     <div class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg ring-1 ring-black/5 p-1 z-10" role="menu" aria-label="Menú de usuario" data-menu="items">
@@ -364,6 +362,7 @@
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16 13v-2H7V7l-5 5 5 5v-4h9Zm3-10h-8a2 2 0 0 0-2 2v3h2V5h8v14h-8v-3H9v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/></svg>
                             Cerrar sesión
                         </a>
+
                     </div>
                 </div>
             </div>
@@ -433,7 +432,7 @@
 </script>
 
 <!-- JS mínimo para interacciones -->
-<script src="assets/js/base.js?<?php echo time();?>"></script>
+<script src="/assets/js/base.js?<?php echo time();?>"></script>
 
 </body>
 </html>

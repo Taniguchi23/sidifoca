@@ -62,9 +62,9 @@
                                             Gestión Pedagógica
                                         </summary>
                                         <ul class="ml-5 mt-1 space-y-1">
-                                            <li><a hx-get="{{route('centro-academico.lista')}}" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Inducción</a></li>
-                                            <li><a hx-get="{{route('centro-academico.lista')}}" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Plan curricular</a></li>
-                                            <li><a hx-get="{{route('centro-academico.lista')}}" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Evaluación formativa</a></li>
+                                            <li><a hx-get="pages/calificaciones/lista.php?curso=Inducción" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Inducción</a></li>
+                                            <li><a hx-get="pages/calificaciones/lista.php?curso=Plan curricular" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Plan curricular</a></li>
+                                            <li><a hx-get="pages/calificaciones/lista.php?curso=Evaluación formativa" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Evaluación formativa</a></li>
                                         </ul>
                                     </details>
 
@@ -74,8 +74,8 @@
                                             Innovación Educativa
                                         </summary>
                                         <ul class="ml-5 mt-1 space-y-1">
-                                            <li><a hx-get="pages/centroacademico/lista.php?curso=Proyectos innovadores" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Proyectos innovadores</a></li>
-                                            <li><a hx-get="pages/centroacademico/lista.php?curso=TIC en el aula" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">TIC en el aula</a></li>
+                                            <li><a hx-get="pages/calificaciones/lista.php?curso=Proyectos innovadores" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Proyectos innovadores</a></li>
+                                            <li><a hx-get="pages/calificaciones/lista.php?curso=TIC en el aula" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">TIC en el aula</a></li>
                                         </ul>
                                     </details>
 
@@ -85,8 +85,8 @@
                                             Bienestar Docente
                                         </summary>
                                         <ul class="ml-5 mt-1 space-y-1">
-                                            <li><a hx-get="pages/centroacademico/lista.php?curso=Autocuidado y autoestima" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Autocuidado y autoestima</a></li>
-                                            <li><a hx-get="pages/centroacademico/lista.php?curso=Manejo del estrés" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Manejo del estrés</a></li>
+                                            <li><a hx-get="pages/calificaciones/lista.php?curso=Autocuidado y autoestima" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Autocuidado y autoestima</a></li>
+                                            <li><a hx-get="pages/calificaciones/lista.php?curso=Manejo del estrés" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Manejo del estrés</a></li>
                                         </ul>
                                     </details>
                                 </div>
@@ -99,8 +99,8 @@
                                     Periodo 2
                                 </summary>
                                 <ul class="ml-5 mt-1 space-y-1">
-                                    <li><a hx-get="pages/centroacademico/lista.php?curso=Acompañamiento pedagógico" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Acompañamiento pedagógico</a></li>
-                                    <li><a hx-get="pages/centroacademico/lista.php?curso=Evaluación docente" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Evaluación docente</a></li>
+                                    <li><a hx-get="pages/calificaciones/lista.php?curso=Acompañamiento pedagógico" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Acompañamiento pedagógico</a></li>
+                                    <li><a hx-get="pages/calificaciones/lista.php?curso=Evaluación docente" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Evaluación docente</a></li>
                                 </ul>
                             </details>
 
@@ -110,8 +110,8 @@
                                     Periodo 3
                                 </summary>
                                 <ul class="ml-5 mt-1 space-y-1">
-                                    <li><a hx-get="pages/centroacademico/lista.php?curso=Liderazgo institucional"  hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Liderazgo institucional</a></li>
-                                    <li><a hx-get="pages/centroacademico/lista.php?curso=Gestión de equipos" hx-target="#content-centro" hx-swap="innerHTML"  class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Gestión de equipos</a></li>
+                                    <li><a hx-get="pages/calificaciones/lista.php?curso=Liderazgo institucional"  hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Liderazgo institucional</a></li>
+                                    <li><a hx-get="pages/calificaciones/lista.php?curso=Gestión de equipos" hx-target="#content-calificacion" hx-swap="innerHTML"  class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Gestión de equipos</a></li>
                                 </ul>
                             </details>
 
@@ -121,8 +121,8 @@
                                     Periodo 4
                                 </summary>
                                 <ul class="ml-5 mt-1 space-y-1">
-                                    <li><a hx-get="pages/centroacademico/lista.php?curso=Evaluación final" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Evaluación final</a></li>
-                                    <li><a hx-get="pages/centroacademico/lista.php?curso=Cierre del año académico" hx-target="#content-centro" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Cierre del año académico</a></li>
+                                    <li><a hx-get="pages/calificaciones/lista.php?curso=Evaluación final" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Evaluación final</a></li>
+                                    <li><a hx-get="pages/calificaciones/lista.php?curso=Cierre del año académico" hx-target="#content-calificacion" hx-swap="innerHTML" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Cierre del año académico</a></li>
                                 </ul>
                             </details>
                         </div>
@@ -138,8 +138,8 @@
                             <span class="text-[11px] text-slate-500 bg-slate-100 rounded-full px-2 py-0.5">Histórico</span>
                         </summary>
                         <ul class="ml-5 mt-1 space-y-1">
-                            <li><a hx-get="pages/centroacademico/lista.php?curso=Edutalentos 2024" hx-target="#content-centro" hx-swap="innerHTML"  class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Edutalentos 2024</a></li>
-                            <li><a hx-get="pages/centroacademico/lista.php?curso=Capacitaciones UGEL" hx-target="#content-centro" hx-swap="innerHTML"  class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Capacitaciones UGEL</a></li>
+                            <li><a hx-get="pages/calificaciones/lista.php?curso=Edutalentos 2024" hx-target="#content-calificacion" hx-swap="innerHTML"  class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Edutalentos 2024</a></li>
+                            <li><a hx-get="pages/calificaciones/lista.php?curso=Capacitaciones UGEL" hx-target="#content-calificacion" hx-swap="innerHTML"  class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Capacitaciones UGEL</a></li>
                         </ul>
                     </details>
 
@@ -153,8 +153,8 @@
                             <span class="text-[11px] text-slate-500 bg-slate-100 rounded-full px-2 py-0.5">Archivo</span>
                         </summary>
                         <ul class="ml-5 mt-1 space-y-1">
-                            <li><a href="#formacion2023" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Formación continua</a></li>
-                            <li><a href="#virtual2023" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Cursos virtuales</a></li>
+                            <li><a href="#" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Formación continua</a></li>
+                            <li><a href="#" class="block px-2 py-1.5 rounded-md hover:bg-slate-50">Cursos virtuales</a></li>
                         </ul>
                     </details>
                 </nav>
@@ -168,22 +168,19 @@
         </aside>
 
 
-        <section class="min-w-0 flex-1" id="content-centro">
-            <div class="min-h-screen flex items-center justify-center p-4">
-                <div class="max-w-xl text-center">
-                    <i data-lucide="graduation-cap" class="mx-auto h-20 w-20 text-slate-400"></i>
-                    <h1 class="mt-4 text-xl font-semibold text-slate-800">Selecciona un curso</h1>
-                    <p class="mt-2 text-sm text-slate-600">
-                        Elige un curso en el <strong>árbol de navegación</strong> de la izquierda para ver los
-                        <strong>datos completos del curso</strong> y el listado de participantes.
-                    </p>
-                    <div class="mt-4 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-600">
-                        <i data-lucide="hand" class="h-4 w-4"></i>
-                        <span>Año → Periodo → Categoría → <em>Curso</em></span>
-                    </div>
-                </div>
-            </div>
+
+
+
+
+        <section class="min-w-0 flex-1" id="content-calificacion">
+
         </section>
-        <!-- Panel derecho -->
+
+
+
+
     </div>
+
+
+
 @endsection

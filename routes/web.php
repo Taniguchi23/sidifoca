@@ -467,9 +467,53 @@ Route::middleware('auth')->group(function () {
     Route::get('course/exportar', 'CourseController@exportar')->name('course.exportar')->middleware('permission:reporte_course');
     Route::post('course/reporte', 'CourseController@reporte')->name('course.reporte')->middleware('permission:reporte_course');
 
-    Route::get('centro-academico', 'AulaVirtual\CentroAcademicoController@index')->name('centro-academico.index');
-    Route::get('centro-academico/lista', 'AulaVirtual\CentroAcademicoController@lista')->name('centro-academico.lista');
-});
+    Route::namespace('AulaVirtual')->group(function () {
+        Route::get('centro-academico', 'CentroAcademicoController@index')->name('centro-academico.index');
+        Route::get('centro-academico/lista', 'CentroAcademicoController@lista')->name('centro-academico.lista');
+    });
+
+    Route::prefix('aula-virtual')
+        ->namespace('AulaVirtual')
+        ->group(function () {
+            Route::prefix('centro-academico')->group(function () {
+                Route::get('', 'CentroAcademicoController@index')->name('aula-virtual.centro-academico.index');
+            });
+            Route::prefix('gestion-usuario')->group(function () {
+                Route::get('', 'GestionUsuarioController@index')->name('aula-virtual.gestion-usuario.index');
+            });
+            Route::prefix('certificado')->group(function () {
+                Route::get('', 'CertificadoController@index')->name('aula-virtual.certificado.index');
+            });
+            Route::prefix('auditoria')->group(function () {
+                Route::get('accesos', 'AuditoriaController@accesosUsuarios')->name('aula-virtual.auditoria.accesos-usuarios');
+                Route::get('log', 'AuditoriaController@logSistema')->name('aula-virtual.auditoria.log-sistema');
+            });
+            Route::prefix('calificacion-tarea')->group(function () {
+                Route::get('', 'CalificacionTareaController@index')->name('aula-virtual.calificacion-tarea.index');
+            });
+    });
+
+    Route::prefix('mensajeria')
+        ->namespace('Mensajeria')
+        ->group(function () {
+            Route::prefix('programacion-envio')->group(function () {
+                Route::get('', 'ProgramacionEnvioController@index')->name('mensajeria.programacion-envio.index');
+            });
+            Route::prefix('plantilla-mensaje')->group(function () {
+                Route::get('', 'PlantillaMensajeController@index')->name('mensajeria.plantilla-mensaje.index');
+            });
+            Route::prefix('configuracion-canal')->group(function () {
+                Route::get('whatsapp', 'ConfiguracionCanalController@whatsapp')->name('mensajeria.configuracion-canal.whatsapp.index');
+                Route::get('email', 'ConfiguracionCanalController@email')->name('mensajeria.configuracion-canal.email.index');
+                Route::get('sms', 'ConfiguracionCanalController@sms')->name('mensajeria.configuracion-canal.sms.index');
+            });
+            Route::prefix('reporte')->group(function () {
+                Route::get('estadistica', 'ReporteController@estadistica')->name('mensajeria.reporte.estadistica');
+                Route::get('envios-realizado', 'ReporteController@envioRealizado')->name('mensajeria.reporte.envios-realizado');
+            });
+        });
+
+    });
 
 });
 
