@@ -72,16 +72,7 @@
            aria-label="Barra lateral de navegación">
         <!-- Logo -->
         <div class="flex items-center gap-3 h-16 px-4 border-b border-slate-800 shrink-0">
-            <div class="h-9 w-9 rounded-md bg-indigo-500/20 ring-1 ring-indigo-500/30 flex items-center justify-center">
-                <!-- Logo minimal -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-300" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M11 3a1 1 0 0 1 2 0v8h8a1 1 0 1 1 0 2h-8v8a1 1 0 1 1-2 0v-8H3a1 1 0 1 1 0-2h8V3z"/>
-                </svg>
-            </div>
-            <div class="min-w-0">
-                <p class="text-slate-100 font-semibold leading-tight">Edutalentos</p>
-                <p class="text-slate-400 text-xs">Aula &amp; Gestión</p>
-            </div>
+            <img src="/images/logo-t.png" alt="">
         </div>
 
         <!-- Nav scroll -->
