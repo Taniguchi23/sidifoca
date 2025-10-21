@@ -477,6 +477,8 @@ Route::middleware('auth')->group(function () {
         ->group(function () {
             Route::prefix('centro-academico')->group(function () {
                 Route::get('', 'CentroAcademicoController@index')->name('aula-virtual.centro-academico.index');
+                Route::get('/cursos/{id}/actividades', 'CentroAcademicoController@actividades')
+                    ->name('cursos.actividades');
             });
             Route::prefix('gestion-usuario')->group(function () {
                 Route::get('', 'GestionUsuarioController@index')->name('aula-virtual.gestion-usuario.index');

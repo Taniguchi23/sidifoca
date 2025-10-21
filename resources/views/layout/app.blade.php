@@ -293,7 +293,8 @@
                     <span class="font-semibold">Plataforma</span>
                 </div>
                 <button class="p-2 rounded-sm hover:bg-slate-800" data-drawer="close" aria-label="Cerrar menú">
-                    <svg class="h-5 w-5 text-slate-300" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18 18 6M6 6l12 12"/></svg>
+
+                    <a href="{{ route('intranet.cerrar_sesion') }}"><svg class="h-5 w-5 text-slate-300" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18 18 6M6 6l12 12"/></svg></a>
                 </button>
             </div>
             <div class="mt-2 flex-1 overflow-y-auto thin-scroll">
@@ -424,6 +425,7 @@
 
 <!-- JS mínimo para interacciones -->
 <script src="/assets/js/base.js?<?php echo time();?>"></script>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+@yield('script')
 </body>
 </html>
