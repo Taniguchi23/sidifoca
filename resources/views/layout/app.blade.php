@@ -425,7 +425,9 @@
 
 <!-- JS mínimo para interacciones -->
 <script src="/assets/js/base.js?<?php echo time();?>"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+
 @yield('script')
 </body>
 </html>

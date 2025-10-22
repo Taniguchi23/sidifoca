@@ -35,8 +35,23 @@ class CentroAcademicoController extends Controller
     public function actividades(Request $req, CourseRepositoryInterface  $courseRepository)
     {
         $idCurso = (int) $req->route('id');
-        $rows = $courseRepository->listByCourse($idCurso);
-        return response()->json(['data' => $rows]);
+        $limit   = (int) $req->query('limit', 20);
+        $offset  = (int) $req->query('offset', 0);
+        $search  = trim((string) $req->query('search', ''));
+        $tipoRaw   = $req->query('tipo');
+        $estadoRaw = $req->query('estado');
+        $fecha   = trim((string) $req->query('fecha', ''));
+
+        $tipo   = in_array($tipoRaw,   ['quiz','survey','work','forum'], true) ? $tipoRaw   : null;
+        $estado = in_array($estadoRaw, ['Publicado','No publicado','Expirado','Oculto'], true) ? $estadoRaw : null;
+
+        [$rows, $total] = $courseRepository->listByCourseServer($idCurso, $limit, $offset, $search,$tipo, $fecha);
+
+        // Grid.js espera { data, total }
+        return response()->json([
+            'data'  => $rows,
+            'total' => $total,
+        ]);
     }
 
 }

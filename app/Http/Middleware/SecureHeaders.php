@@ -32,7 +32,7 @@ class SecureHeaders
 //        $response->headers->set('Content-Security-Policy', "base-uri 'self'; connect-src 'self'; default-src 'self'; form-action 'self'; img-src 'self' data:; media-src 'self'; object-src 'none'; script-src 'self' 'nonce-" . $random . "'; style-src 'self' 'unsafe-inline'");
         $response->headers->set(
             'Content-Security-Policy',
-            "base-uri 'self'; connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://cdn.tailwindcss.com ; default-src 'self' https: data:; form-action 'self'; img-src 'self' https://i.pravatar.cc data:; media-src 'self'; object-src 'none'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://code.jquery.com/jquery-3.7.1.min.js https://unpkg.com https://cdn.tailwindcss.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:;"
+            "base-uri 'self'; connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://cdn.tailwindcss.com ; default-src 'self' https: data:; form-action 'self'; img-src 'self' https://i.pravatar.cc data:; media-src 'self'; object-src 'none'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://code.jquery.com/jquery-3.7.1.min.js https://unpkg.com https://cdn.tailwindcss.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:;"
         );
         return $response;
     }
