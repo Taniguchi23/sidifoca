@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('link')
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @endsection
 @section('content')
     <div class="h-screen flex gap-4">
@@ -60,7 +61,7 @@
                                     </summary>
                                     <ul class="ml-5 mt-1 space-y-1">
                                         @foreach($categoria as $curso)
-                                            <li><a class="block px-2 py-1.5 rounded-md hover:bg-slate-50 cursoSelector" data-id="{{$curso['id']}}" data-anio="{{$key}}" data-categoria="{{$key1}}" data-title="{{ $curso['curso'] }}" title="{{ $curso['curso'] }}">
+                                            <li><a href="{{ route('aula-virtual.centro-academico.curso', ['id' => $curso['id']]) }}" class="block px-2 py-1.5 rounded-md hover:bg-slate-50 " title="{{ $curso['curso'] }}">
                                                     {{ \Illuminate\Support\Str::limit($curso['curso'], 30) }}</a></li>
                                         @endforeach
                                     </ul>
@@ -84,12 +85,176 @@
 
 
         <section class="min-w-0 flex-1" id="content-centro">
-            <div id="grid-actividades" class="overflow-hidden rounded-2xl border border-slate-200"></div>
+          ssssss
+            <form method="get" action=""
+                  class="max-w-6xl mx-auto p-6 bg-white rounded-2xl shadow-lg border border-slate-200"
+                  x-data="{
+    dropdowns: [
+      { name: 'country', label: 'Country', items: [
+        { value: 'usa', label: 'USA' }, { value: 'china', label: 'China' },
+        { value: 'japan', label: 'Japan' }, { value: 'germany', label: 'Germany' },
+        { value: 'uk', label: 'United Kingdom' }, { value: 'india', label: 'India' },
+        { value: 'france', label: 'France' }, { value: 'italy', label: 'Italy' },
+        { value: 'canada', label: 'Canada' }, { value: 'brazil', label: 'Brazil' }
+      ]},
+      { name: 'brand', label: 'Brand', items: [
+        { value: 'moetchandon', label: 'Moët & Chandon' },
+        { value: 'domperignon', label: 'Dom Pérignon' },
+        { value: 'veuveclicquot', label: 'Veuve Clicquot' },
+        { value: 'crystalroederer', label: 'Louis Roederer Cristal' },
+        { value: 'kruger', label: 'Krug' }, { value: 'bollinger', label: 'Bollinger' },
+        { value: 'taittinger', label: 'Taittinger' }, { value: 'perrierjouet', label: 'Perrier-Jouët' },
+        { value: 'lafite', label: 'Château Lafite Rothschild' },
+        { value: 'latour', label: 'Château Latour' },
+        { value: 'margaux', label: 'Château Margaux' },
+        { value: 'petrus', label: 'Château Pétrus' },
+        { value: 'romanee', label: 'Domaine de la Romanée-Conti' }
+      ]},
+      { name: 'abv', label: 'ABV', items: [
+        { value: '0-20', label: '0-20%' },
+        { value: '20-40', label: '20-40%' },
+        { value: '40-99', label: '40%+' }
+      ]}
+    ],
+    getUrlParams(name) {
+      const params = new URLSearchParams(window.location.search);
+      const values = params.getAll(name + '[]');
+      return values.length > 0 ? values : [];
+    },
+    getSelectedItems(dropdown) {
+      return this.$refs[dropdown.name]
+        ? dropdown.items.filter(item => this.$refs[dropdown.name].selected.includes(item.value))
+        : [];
+    }
+  }">
+
+                <!-- Encabezado -->
+                <h2 class="text-2xl font-semibold text-slate-800 mb-6">🍾 Filter your selection</h2>
+
+                <!-- Contenedor de filtros (estilo compacto + slate + indigo) -->
+                <div class="flex flex-wrap items-start gap-3 mb-6">
+                    <template x-for="dropdown in dropdowns" :key="dropdown.name">
+                        <div
+                            x-data="{
+          open: false,
+          search: '',
+          selected: getUrlParams(dropdown.name),
+          get filteredItems() {
+            return dropdown.items.filter(item =>
+              item.label.toLowerCase().includes(this.search.toLowerCase())
+            )
+          },
+          get selectedLabel() {
+            if (this.selected.length === 0) return dropdown.label;
+            return `${dropdown.label}: ${this.selected.length}`;
+          }
+        }"
+                            class="relative w-full md:w-56"
+                            :x-ref="dropdown.name">
+
+                            <!-- Inputs ocultos -->
+                            <template x-for="value in selected" :key="value">
+                                <input type="hidden" :name="dropdown.name + '[]'" :value="value" aria-label="dropdown">
+                            </template>
+
+                            <!-- Botón dropdown (mismo look que select h-9) -->
+                            <div class="relative">
+                                <button type="button"
+                                        @click="open = !open; $nextTick(() => { if(open) $refs.searchInput.focus() })"
+                                        class="h-9 w-full inline-flex items-center justify-between rounded-md border border-slate-200 bg-white pe-8 px-3 text-sm text-slate-700
+                   hover:border-slate-300 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 transition">
+                                    <span x-text="selectedLabel" class="truncate"></span>
+                                </button>
+                                <i data-lucide="chevron-down"
+                                   class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"></i>
+                            </div>
+
+                            <!-- Menú -->
+                            <div x-show="open" @click.away="open = false" x-transition
+                                 class="absolute z-20 w-full mt-2 rounded-md shadow-lg bg-white ring-1 ring-slate-200 overflow-hidden">
+                                <!-- Buscador -->
+                                <div class="relative">
+                                    <input x-model="search" x-ref="searchInput"
+                                           class="h-9 w-full px-3 text-sm text-slate-800 border-b border-slate-100 focus:outline-none"
+                                           type="text" :placeholder="'Buscar ' + dropdown.label.toLowerCase()" @click.stop>
+                                    <i data-lucide="search"
+                                       class="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"></i>
+                                </div>
+
+                                <!-- Ítems -->
+                                <div class="max-h-56 overflow-y-auto divide-y divide-slate-100">
+                                    <template x-for="item in filteredItems" :key="item.value">
+                                        <div
+                                            @click="selected.includes(item.value) ? selected = selected.filter(i => i !== item.value) : selected.push(item.value)"
+                                            class="px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 cursor-pointer flex items-center gap-2 transition"
+                                            :class="{ 'bg-indigo-50 text-indigo-700': selected.includes(item.value) }">
+                                            <input type="checkbox" :checked="selected.includes(item.value)"
+                                                   class="rounded text-indigo-600 focus:ring-indigo-300 flex-shrink-0" @click.stop>
+                                            <span x-text="item.label" class="truncate"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Botón de aplicar (como tus acciones) -->
+                    <button type="submit"
+                            class="inline-flex h-9 items-center gap-2 rounded-md bg-slate-900 px-3 text-sm text-white
+             hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-slate-300">
+                        <i data-lucide="search" class="h-4 w-4"></i>
+                        Aplicar filtros
+                    </button>
+                </div>
+
+                <!-- Filtros seleccionados (chips) -->
+                <div class="flex flex-wrap gap-2">
+                    <template x-for="dropdown in dropdowns" :key="dropdown.name">
+                        <template x-if="$refs[dropdown.name] !== undefined">
+                            <template x-for="item in getSelectedItems(dropdown)" :key="item.value">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium
+                       bg-slate-100 text-slate-700">
+            <span x-text="item.label"></span>
+            <button type="button"
+                    @click="$refs[dropdown.name].selected = $refs[dropdown.name].selected.filter(i => i !== item.value)"
+                    class="p-0.5 hover:bg-slate-200 rounded-full" aria-label="Quitar">
+              <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </span>
+                            </template>
+                        </template>
+                    </template>
+                </div>
+            </form>
+
+            <!-- Si aún no lo tienes en tu layout: inicializa Lucide -->
+            <script>
+                document.addEventListener('alpine:init', () => {
+                    if (window.lucide?.createIcons) {
+                        window.lucide.createIcons();
+                    } else {
+                        // fallback por si no usas Alpine hook
+                        requestAnimationFrame(() => window.lucide?.createIcons?.());
+                    }
+                });
+            </script>
+
+
+
+            ssss
+
+            <div id="grid-actividades" class="overflow-hidden rounded-2xl border border-slate-200">
+
+            </div>
         </section>
     </div>
 @endsection
 @section('script')
     <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.0/dist/flowbite.min.js"></script>
     <script>
         // ===================== Helpers =====================
         const cap = s => (s ?? '').charAt(0).toUpperCase() + (s ?? '').slice(1);
@@ -248,101 +413,30 @@
 
             // inyecta tu HTML (el que me mandaste) pero con el contenedor del grid
             $('#content-centro').html(`
-    <div class="bg-white border border-slate-200 rounded-2xl">
 
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-4 border-b border-slate-100">
-            <div class="min-w-0">
-            <div class="flex flex-wrap items-center gap-2 text-slate-500 text-xs sm:text-sm">
-            <a class="hover:text-slate-700" href="#">Año</a><span>›</span>
-            <a class="hover:text-slate-700" href="#">${anio}</a><span>›</span>
-            <span class="text-slate-700 font-medium">${categoria}</span>
-            </div>
-            <h1 class="mt-2 text-base sm:text-lg font-semibold text-slate-800 truncate">Curso: ${titulo}</h1>
-            </div>
-            <div class="flex flex-wrap items-center gap-2">
-            <button id="btn-descargar" class="inline-flex items-center gap-2 rounded-lg bg-green-600 text-white px-4 py-2 text-sm hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-200">
-            <i data-lucide="download" class="h-4 w-4"></i> Descargar reporte
-            </button>
-            </div>
-            </div>
-
-
-            <div class="p-4 sm:p-6">
-
-            <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-
-            <div class="lg:col-span-2">
-            <label for="filtro-buscar" class="mb-1 block text-[11px] font-medium text-slate-600">Buscar recurso</label>
-            <div class="relative">
-            <input id="filtro-buscar" type="search" placeholder="Escribe un nombre o palabra clave"
-            class="h-9 w-full rounded-md border border-slate-200 ps-9 pe-3 text-sm placeholder-slate-400 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100" />
-            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"></i>
-            </div>
-            </div>
-
-
-            <div>
-            <label for="filtro-tipo" class="mb-1 block text-[11px] font-medium text-slate-600">Tipo de recurso</label>
-            <div class="relative">
-            <select id="filtro-tipo"
-            class="h-9 w-full appearance-none rounded-md border border-slate-200 px-3 pr-8 text-sm text-slate-700 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100">
-            <option value="">Todos</option>
-            <option value="quiz">Quiz</option>
-            <option value="survey">Encuesta</option>
-            <option value="work">Tarea</option>
-            <option value="forum">Foro</option>
-            </select>
-            <i data-lucide="chevron-down" class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"></i>
-            </div>
-            </div>
-
-
-            <div>
-            <label for="f-r-fecha" class="mb-1 block text-[11px] font-medium text-slate-600">Fecha publicación</label>
-            <div class="relative">
-            <input id="fecha" type="text" placeholder="Selecciona una fecha" data-datepicker
-            class="h-9 w-full rounded-md border border-slate-200 ps-9 pe-3 text-sm text-slate-700 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100" />
-            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"></i>
-            </div>
-            </div>
-
-
-            <div class="flex items-end gap-2">
-            <button id="btn-filtrar" class="inline-flex h-9 items-center gap-2 rounded-md bg-slate-900 px-3 text-sm text-white hover:bg-slate-800">
-            <i data-lucide="search" class="h-4 w-4"></i> Buscar
-            </button>
-            <button id="btn-limpiar" class="inline-flex h-9 items-center gap-2 rounded-md border border-slate-200 px-3 text-sm hover:bg-slate-50">
-            <i data-lucide="eraser" class="h-4 w-4"></i> Limpiar
-            </button>
-            </div>
-            </div>
-
-
-            <div id="grid-actividades" class="overflow-hidden rounded-2xl border border-slate-200"></div>
-            </div>
-            </div>
 
             `);
 
 
-  if (window.lucide) lucide.createIcons();
+          if (window.lucide) lucide.createIcons();
 
-            setTimeout(() => {
-                const el = document.getElementById('fecha');
-                if (el && window.Datepicker) {
-                    new Datepicker(el, {
-                        autohide: true,
-                        format: 'yyyy-mm-dd'
-                    });
-                }
-            }, 50);
+                    setTimeout(() => {
+                        const el = document.getElementById('fecha');
+                        if (el && window.Datepicker) {
+                            new Datepicker(el, {
+                                autohide: true,
+                                format: 'yyyy-mm-dd'
+                            });
+                        }
+                    }, 50);
 
-  // reset filtros cuando abres curso
-  __qs = new URLSearchParams();
+          // reset filtros cuando abres curso
+          __qs = new URLSearchParams();
 
-  bindFilters(cursoId);
-  renderGrid(cursoId);
-});
+          bindFilters(cursoId);
+          renderGrid(cursoId);
+
+        });
 </script>
 
 

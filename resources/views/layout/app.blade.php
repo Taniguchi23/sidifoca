@@ -4,38 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Edutalentos - MINEDU</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Config Tailwind (colores & fuente opcional)
-        tailwind.config = {
-            theme: {
-                borderRadius: {
-                    none: '0',
-                    sm:   '0.25rem',  // 2px
-                    DEFAULT: '1.25rem',// 4px
-                    md:   '0.375rem',  // 6px
-                    lg:   '0.5rem',    // 8px
-                    xl:   '0.625rem',  // 10px
-                    '2xl':'0.75rem',   // 12px
-                    full: '9999px'
-                },
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Apple Color Emoji', 'Segoe UI Emoji']
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Flowbite (CSS opcional, la UI es con utilidades Tailwind) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.1/flowbite.min.css"/>
-
-    <!-- Flowbite (JS) -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite-datepicker@1.3.2/dist/js/datepicker-full.min.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.0/dist/flowbite.min.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -367,67 +339,13 @@
     </section>
 </div>
 
-
-
-<script>
-    function initDatepickers(root = document) {
-        lucide.createIcons();
-
-        const nodes = root.querySelectorAll('[data-datepicker]:not([data-dp-inited="1"])');
-
-        nodes.forEach((el) => {
-            // Si hay otro datepicker (jQuery UI) destrúyelo
-            if (window.jQuery && jQuery.fn.datepicker) {
-                try { jQuery(el).datepicker('destroy'); } catch (e) {}
-            }
-
-            // Evita errores si la clase no existe aún
-            if (typeof Datepicker === 'undefined') {
-                console.error('Flowbite Datepicker no está cargado.');
-                return;
-            }
-
-            // Inicializa (usa selector string en container)
-            new Datepicker(el, {
-                autohide: true,
-                format: 'yyyy-mm-dd',
-                container: 'body'
-            });
-
-            // Marca como inicializado
-            el.setAttribute('data-dp-inited', '1');
-        });
-    }
-
-    // 1) Inicial al cargar la página
-    document.addEventListener('DOMContentLoaded', function () {
-        initDatepickers(document);
-    });
-
-    // 2) Si usas HTMX: re-inicializa tras cada swap
-    document.body.addEventListener('htmx:afterSwap', function (evt) {
-        // evt.target es el contenedor donde HTMX hizo el swap
-        initDatepickers(evt.target);
-    });
-
-    // 3) Si también usas jQuery AJAX clásico:
-    if (window.jQuery) {
-        jQuery(document).ajaxComplete(function (_evt, _xhr, _settings) {
-            initDatepickers(document);
-        });
-    }
-
-    // 4) (Opcional) Si insertas en modales Bootstrap:
-    document.addEventListener('shown.bs.modal', function (evt) {
-        initDatepickers(evt.target);
-    });
-</script>
-
 <!-- JS mínimo para interacciones -->
 <script src="/assets/js/base.js?<?php echo time();?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-
-
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+    lucide.createIcons();
+</script>
 @yield('script')
 </body>
 </html>

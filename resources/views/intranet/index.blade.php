@@ -1,7 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <!-- Lucide (omite si ya lo cargas global) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+
 
     <section id="dashboard-plataforma" class="min-w-0 flex-1">
         <div class="bg-white border border-slate-200 rounded-2xl">
@@ -287,8 +286,6 @@
         </div>
     </section>
 
-    <script>
-        lucide.createIcons();
-    </script>
+
 
 @endsection
